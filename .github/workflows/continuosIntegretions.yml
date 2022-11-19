@@ -1,0 +1,19 @@
+name : automatizacion_git_hub_action
+on:
+  push: 
+    branches: ["*"]
+jobs:
+  linter:
+  name: Checking whit linter
+  runs-on: ubuntu-latest
+  steps:
+    - name: Git clone
+      uses: actions/checkout@v3
+    - name: Setup NodeJs
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+    - name: Install depen
+      run: npm ci
+    - name: Run Linter
+      run: npm run lint
